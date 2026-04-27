@@ -3,11 +3,11 @@
 	import Carousel from './Carousel.svelte';
     import "../../../routes/style.scss"
 
-	// Svelte 5 Props
-	let { name, imageUrl, services } = $props<{
+	let { name, imageUrl, services, cardItems } = $props<{
 		name: string;
 		imageUrl: string | null;
 		services: Array<{ title: string; icon: any }>;
+		cardItems: Array<{theme: string;title: string;desc: string;time: string;location: string; action: string;}>;
 	}>();
 
 	const initial = $derived(name?.charAt(0).toUpperCase() ?? 'K');
@@ -39,14 +39,14 @@
 		>
 			{#each services as service}
 				<button
-					class="service-card flex flex-col lg:flex-row lg:gap-3 items-center justify-center p-3 lg:px-5 text-center lg:text-start transition-transform active:scale-95 w-full"
+					class="service-card flex flex-col lg:flex-row lg:gap-3 items-center justify-start p-3 lg:px-5 text-center lg:text-start transition-transform active:scale-95 w-full"
 				>
 					<div class="icon-wrapper mb-2 lg:mb-0">
 						<service.icon class="h-6 w-6 lg:h-7 lg:w-7 text-white" />
 					</div>
 
 					<span
-						class="text-[10px] lg:text-sm leading-tight font-semibold text-white uppercase tracking-wide"
+						class="text-[8px] lg:text-sm leading-tight font-medium text-white uppercase tracking-wide"
 					>
 						{service.title}
 					</span>
@@ -55,7 +55,9 @@
 		</section>
 
 		<section class="w-full lg:w-2/3 mt-2 lg:mt-0 z-10">
-			<Carousel />
+			<Carousel 
+				items={cardItems}
+			/>
 		</section>
 	</div>
 </header>

@@ -2,47 +2,12 @@
     import { onMount, onDestroy } from 'svelte';
     import { fly, fade } from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
-	import {TriangleAlert, Layers, CircleAlert, PackageCheck} from 'lucide-svelte'; 
+    import { browser } from '$app/environment';
+	import {TriangleAlert, Layers, PackageCheck, Zap} from 'lucide-svelte'; 
 
-    interface CardItem {
-        theme: string;
-        badge: string;
-        title: string;
-        desc: string;
-        time: string;
-		location: string; 
-        action: string;
-    }
-
-    const items: CardItem[] = [
-        {
-            theme: 'theme-warning',
-            badge: 'Peringatan',
-            title: 'Banjir di Jl. Mulawarman — Ketinggian 30cm',
-            desc: 'Warga diimbau menghindari ruas Jl. Mulawarman arah Pasar Baru. Tim BPBD sudah dikerahkan ke lokasi.',
-            time: '2 menit lalu',
-			location: 'Balikpapan Barat', 
-            action: 'Lihat',
-        },
-        {
-            theme: 'theme-news',
-            badge: 'Laporan Baru',
-            title: 'Lampu Jalan Mati — Jl. Sudirman KM 5',
-            desc: 'Dilaporkan oleh warga pada pukul 19.24. Status: diteruskan ke Dinas PU. Estimasi perbaikan 2x24 jam.',
-            time: '14 menit lalu',
-			location: 'Balikpapan Selatan', 
-            action: 'Pantau',
-        },
-        {
-            theme: 'theme-info',
-            badge: 'Informasi Publik',
-            title: 'APBD Perubahan 2025 Telah Dipublikasikan',
-            desc: 'Dokumen APBD Perubahan Kota Balikpapan Tahun Anggaran 2025 kini tersedia di portal Informasi Publik.',
-            time: '1 jam lalu',
-			location: 'Portal Resmi', 
-            action: 'Unduh'
-        }
-    ];
+	let { items } = $props<{
+		items: Array<{theme: string; title: string; desc: string; time: string; location: string; action: string;}>;
+	}>(); 
 
     let current = $state(0);
     let autoTimer: ReturnType<typeof setInterval>;
@@ -77,7 +42,7 @@
         const currentY = 'touches' in e ? e.touches[0].clientY : e.clientY;
         if (Math.abs(currentY - startY) > 5) {
             hasMoved = true;
-            e.preventDefault(); // blocks page scroll during swipe
+            e.preventDefault();
         }
     }
 
@@ -107,11 +72,14 @@
 
     onDestroy(() => {
         stopAuto();
-        window.removeEventListener('mouseup', handleEnd);
+        // Guard window — onDestroy can fire on the server during SSR
+        if (browser) {
+            window.removeEventListener('mouseup', handleEnd);
+        }
     });
 </script>
 
-<div class="carousel-container lg:h-50 w-full mt-2.5 lg:mt-0 lg:min-w-[40%]">
+<div class="carousel-container lg:h-50 w-full mt-2.5 lg:mt-0 lg:min-w-[40%] bg-emerald-500">
     <div 
         class="carousel-viewport mt-2"
         onmousedown={handleStart}
@@ -127,32 +95,40 @@
         {#each items as item, i}
             {#if i === current}
                 <div
-                    class="c-card lg:h-50 {item.theme}"
+                    class="c-card lg:max-w-md lg:h-50 theme-{item.theme}"
                     in:fly={{ y: 24, duration: 600, easing: cubicOut }}
                     out:fade={{ duration: 300 }}
                 >
-				{#snippet themeIcon(theme: string)}
-					{#if theme === "theme-warning"} <TriangleAlert class="w-4" />
-					{:else if theme === "theme-info"} <Layers class="w-4" />
-					{:else if theme === "theme-news"} <PackageCheck class="w-4" />
-					{/if}
-				{/snippet}
-				<div class="c-badge">
-					{@render themeIcon(item.theme)}
-                        {item.badge}
-                    </div>
+                {#snippet themeIcon(theme: string)}
+                    {#if theme === "warning"} 
+						<TriangleAlert class="w-4" />
+						Peringatan
+                    {:else if theme === "info"} 
+						<Layers class="w-4" />
+						News
+                    {:else if theme === "news"} 
+						<PackageCheck class="w-4" />
+						Konfirmasi
+                    {:else if theme === "emergency"} 
+						<Zap class="w-4" />
+						Darurat!
+                    {/if}
+                {/snippet}
+                <div class="c-badge">
+                    {@render themeIcon(item.theme)}
+                </div>
 
-                    <div class="c-content">
-                        <h3 class="c-title">{item.title}</h3>
-                        <p class="c-desc">{item.desc}</p>
-                    </div>
+                <div class="c-content">
+                    <h3 class="c-title">{item.title}</h3>
+                    <p class="c-desc">{item.desc}</p>
+                </div>
 
-                    <div class="c-footer">
-                        <span class="c-time">{item.time}</span>
-                        <button class="c-action" onclick={(e) => { e.stopPropagation(); console.log('Action Clicked'); }}>
-                            {item.action}→
-                        </button>
-                    </div>
+                <div class="c-footer">
+                    <span class="c-time">{item.time}</span>
+                    <button class="c-action" onclick={(e) => { e.stopPropagation(); console.log('Action Clicked'); }}>
+                        {item.action}→
+                    </button>
+                </div>
                 </div>
             {/if}
         {/each}
@@ -187,7 +163,7 @@
         display: grid;
         place-items: center;
         min-height: 170px;
-        touch-action: none; /* Fixed: was pan-x, which blocked vertical swipe detection */
+        touch-action: none;
     }
 
     .c-card {
@@ -217,7 +193,7 @@
         }
     }
 
-    .theme-warning { background: linear-gradient(135deg, #b9852b 0%, #d2b638 100%); }
+    .theme-warning { background: linear-gradient(135deg, #b9852b 0%, #d8bc3f 100%); }
     .theme-emergency { background: linear-gradient(135deg, #8A1E20 0%, #EB2532 100%); }
     .theme-info { background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%); }
     .theme-news { background: linear-gradient(135deg, #1b7f52 0%, #1cb150 100%); }
@@ -232,7 +208,6 @@
         font-size: 10px;
         font-weight: 700;
         width: fit-content;
-        svg { width: 12px; height: 12px; }
     }
 
     .c-title { font-size: 14px; font-weight: 800; line-height: 1.35; margin: 0; }
