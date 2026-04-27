@@ -15,7 +15,7 @@ header{
         z-index: 10;
     }
 
-   > div {
+   > .circle-1, .circle-2 {
         position: absolute;
         border: solid 10px #24AB70;
         opacity: 20%;
