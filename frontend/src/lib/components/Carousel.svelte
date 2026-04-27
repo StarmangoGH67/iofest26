@@ -65,12 +65,12 @@
 	onDestroy(stopAuto);
 </script>
 
-<div class="carousel-container w-full lg:min-w-[40%]">
-	<div class="carousel-viewport">
+<div class="carousel-container lg:h-50 w-full mt-2.5 lg:mt-0 lg:min-w-[40%]">
+	<div class="carousel-viewport mt-2">
 		{#each items as item, i}
 			{#if i === current}
 				<div
-					class="c-card {item.theme}"
+					class="c-card lg:h-[200px] {item.theme}"
 					in:fly={{ y: 24, duration: 600, easing: cubicOut }}
 					out:fade={{ duration: 300 }}
 				>
@@ -116,18 +116,19 @@
 	.carousel-container {
 		position: relative;
 		z-index: 50;
-		margin-top: 10px;
 		opacity: 1;
 	}
 
 	.carousel-viewport {
 		position: relative;
-		height: 170px;
+		// height: 170px;
 		display: grid;
 		place-items: center;
 	}
 
 	.c-card {
+        position: relative;
+        overflow: hidden;
 		grid-area: 1 / 1;
 		width: 100%;
 		border-radius: 20px;
@@ -147,7 +148,7 @@
 			right: -20px;
 			width: 80px;
 			height: 80px;
-			background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+			background: radial-gradient(circle, rgba(255, 255, 255, 0.1));
 			border-radius: 50%;
 		}
 	}
