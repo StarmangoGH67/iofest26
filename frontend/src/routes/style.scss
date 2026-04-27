@@ -1,0 +1,56 @@
+header {
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(140deg, #0a4a2e 0%, #1a7a50 55%, #2bbf7a 100%);
+
+	min-height: 350px;
+	border-radius: 0 0 50px 50px;
+
+	section {
+		z-index: 10;
+	}
+
+	> .circle-1,
+	.circle-2 {
+		position: absolute;
+		border: solid 10px #24ab70;
+		opacity: 20%;
+		z-index: 1;
+		border-radius: 50%;
+	}
+
+	.circle-1 {
+		aspect-ratio: 1 / 1;
+		top: -5%;
+		right: -10%;
+		border-width: 15px;
+	}
+
+	.circle-2 {
+		aspect-ratio: 1 / 1;
+		top: 20%;
+		border-width: 15px;
+	}
+
+	.service-card {
+		background: rgba(255, 255, 255, 0.15);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		border-radius: 10px;
+		height: 100px;
+		backdrop-filter: blur(10px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+		.icon-wrapper {
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		span {
+			display: block;
+			width: 100%;
+			word-wrap: break-word;
+		}
+	}
+}
