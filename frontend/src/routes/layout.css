@@ -2,12 +2,12 @@
 @plugin '@tailwindcss/forms';
 
 @layer base {
-    html{
-        font-family: 'Plus Jakarta Sans', 'Nunito', system-ui, sans-serif;
-        -webkit-font-smoothing: antialiasing; 
-    }
+	html {
+		font-family: 'Plus Jakarta Sans', 'Nunito', system-ui, sans-serif;
+		-webkit-font-smoothing: antialiasing;
+	}
 
-    *{
-        box-sizing: border-box;
-    }
+	* {
+		box-sizing: border-box;
+	}
 }
