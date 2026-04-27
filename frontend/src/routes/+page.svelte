@@ -44,9 +44,9 @@
 	<title>KakiKuKeKo — Layanan Publik Digital</title>
 </svelte:head>
 
-<div class="relative mx-auto min-h-screen max-w-3xl bg-red-100 pb-24">
+<div class="relative mx-auto min-h-screen max-w-6xl bg-red-100 pb-24">
 	<!-- Header -->
-	<header class="px-6 py-4 shadow-xl lg:px-12 lg:py-8">
+	<header class="px-6 py-4 shadow-xl lg:px-12 lg:py-8 ">
 		<!-- CIRCLES -->
 		<div class="circle-1 w-[30%] lg:w-[20%]"></div>
 		<div class="circle-2 left-[-30%] w-[60%] lg:left-[-20%] lg:w-[40%]"></div>
@@ -67,22 +67,24 @@
 			</div>
 		</section>
 
-		<section class="relative z-10 mt-4 grid grid-cols-3 gap-2 lg:gap-3">
-			{#each services as service}
-				<button
-					class="service-card flex flex-col items-center justify-between p-3 text-center transition-transform active:scale-95"
-				>
-					<div class="icon-wrapper mb-3">
-						<service.icon class="h-8 w-8 text-white" />
-					</div>
-
-					<span class="text-[10px] leading-tight font-medium text-white lg:text-sm">
-						{service.title}
-					</span>
-				</button>
-			{/each}
-		</section>
-
-		<Carousel />
+        <div class="flex flex-col lg:flex-row lg:gap-12 mt-2 lg:mt-6">
+            <section class="relative z-10 mt-4 grid grid-cols-3 lg:grid-cols-1 gap-2 lg:gap-4">
+                {#each services as service}
+                    <button
+                        class=" max-w-md lg:min-w-sm service-card flex flex-col items-center justify-between p-3 text-center transition-transform active:scale-95"
+                    >
+                        <div class="icon-wrapper mb-3">
+                            <service.icon class="h-8 w-8 text-white" />
+                        </div>
+    
+                        <span class="text-[10px] leading-tight font-medium text-white lg:text-sm">
+                            {service.title}
+                        </span>
+                    </button>
+                {/each}
+            </section>
+    
+            <Carousel />
+        </div>
 	</header>
 </div>

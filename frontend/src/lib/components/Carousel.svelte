@@ -65,7 +65,7 @@
 	onDestroy(stopAuto);
 </script>
 
-<div class="carousel-container">
+<div class="carousel-container w-full lg:min-w-[40%]">
 	<div class="carousel-viewport">
 		{#each items as item, i}
 			{#if i === current}
@@ -116,7 +116,6 @@
 	.carousel-container {
 		position: relative;
 		z-index: 50;
-		width: 100%;
 		margin-top: 10px;
 		opacity: 1;
 	}
