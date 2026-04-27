@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FileText, Megaphone, Info } from 'lucide-svelte';
-	import Carousel from '../Carousel.svelte';
+	import Carousel from './Carousel.svelte';
     import "../../../routes/style.scss"
 
 	// Svelte 5 Props
