@@ -2,6 +2,7 @@
 	import { FileText, Megaphone, Info } from 'lucide-svelte';
 	import Header from '$lib/components/Landing/Header.svelte';
 	import SectionHeader from '$lib/components/sectionHeader.svelte';
+	import ServiceButton from '$lib/components/ServiceButton.svelte';
 
 	// User Data
 	const user = {
@@ -68,14 +69,31 @@
             action: 'Unduh'
         }
     ];
+	
+	interface ReportCategory {
+		title: string;
+		icon: any; // keyof typeof Icons dari Lucide
+		bg: string;
+		color: string;
+	}
 
+	const categories: ReportCategory[] = [
+		{ title: 'Jalan Rusak', icon: 'Truck', bg: '#FDECEA', color: '#E53935' },
+		{ title: 'Lampu Jalan', icon: 'Sun', bg: '#FEF3E2', color: '#F59E0B' },
+		{ title: 'Drainase', icon: 'Waves', bg: '#E8F0FD', color: '#2563EB' },
+		{ title: 'Taman & RTH', icon: 'TreePadding', bg: '#E2F5F0', color: '#0D9488' },
+		{ title: 'Sampah', icon: 'Trash2', bg: '#FDE8F2', color: '#DB2777' },
+		{ title: 'Fasum Lain', icon: 'LayoutGrid', bg: '#F0ECFD', color: '#7C3AED' },
+		{ title: 'Darurat', icon: 'Zap', bg: '#FFE8E8', color: '#DC2626' },
+		{ title: 'Cari Laporan', icon: 'Search', bg: '#E8EEF8', color: '#1E40AF' }
+	];
 </script>
 
 <svelte:head>
 	<title>KakiKuKeKo — Layanan Publik Digital</title>
 </svelte:head>
 
-<div class="relative mx-auto min-h-screen max-w-6xl flex flex-col items-center bg-[#F2F5F3] pb-24">
+<div class="relative mx-auto min-h-screen max-w-6xl flex flex-col items-center pb-24">
 	<Header 
 		name={user.name} 
 		imageUrl={user.imageUrl} 
@@ -90,31 +108,43 @@
 				judul= "Layanan Pelaporan" 
 				desc= "Laporkan kerusakan fasilitas publik dan layanan pemerintah. Setiap laporan diproses dan ditindaklanjuti secara transparan." 
 			/>
-			
-			<div class="min-w-md">
-				<div class="svc-grid w-full lg:max-w-lg mx-auto">
-					<div class="svc"><div class="svc-ic" style="background:#FDECEA;"><svg viewBox="0 0 24 24" fill="none" stroke="#E53935" stroke-width="2" stroke-linecap="round"><path d="M3 17l1.5-9h15L21 17H3z"/><path d="M9 17v2m6-2v2"/><path d="M1 8h22"/></svg></div><span class="svc-lb">Jalan Rusak</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#FEF3E2;"><svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div><span class="svc-lb">Lampu Jalan</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#E8F0FD;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><span class="svc-lb">Drainase</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#E2F5F0;"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="svc-lb">Taman & RTH</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#FDE8F2;"><svg viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6m4-6v6"/><path d="M9 6V4h6v2"/></svg></div><span class="svc-lb">Sampah</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#F0ECFD;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><span class="svc-lb">Fasum Lain</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#FFE8E8;"><svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span class="svc-lb">Darurat</span></div>
-					<div class="svc"><div class="svc-ic" style="background:#E8EEF8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><span class="svc-lb">Cari Laporan</span></div>
+			<div class="w-full flex flex-col items-center">
+				<div class="services-grid">
+					{#each categories as item}
+						<ServiceButton
+							title={item.title}
+							iconName={item.icon}
+							bgColor={item.bg}
+							iconColor={item.color}
+						/>
+					{/each}	
+				</div>
+
+				<div class="flex w-full bg-white rounded-2xl shadow-sm my-4">
+					<div class="flex-1 flex flex-col items-center gap-1 py-4 border-r border-gray-100">
+						<span class="text-2xl font-black text-emerald-600">1.2<sup class="text-sm">K</sup></span>
+						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+					</div>
+					<div class="flex-1 flex flex-col items-center gap-1 py-4 border-r border-gray-100">
+						<span class="text-2xl font-black text-emerald-600">999</span>
+						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+					</div>
+					<div class="flex-1 flex flex-col items-center gap-1 py-4">
+						<span class="text-2xl font-black text-emerald-600">99<sup class="text-sm">%</sup></span>
+						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+					</div>
+				</div>
+
+				<div class="flex flex-col gap-3 w-full">
+					<button class="w-full py-3.5 bg-emerald-600 text-white font-bold text-[15px] rounded-2xl active:scale-95 transition-transform hover:brightness-110">
+						Laporan Pelayanan
+					</button>
+					<button class="w-full py-3.5 bg-transparent text-emerald-600 font-bold text-[15px] rounded-2xl border-2 border-emerald-600 active:scale-95 transition-transform hover:bg-emerald-50">
+						Laporan Fasilitas Umum
+					</button>
 				</div>
 			</div>
-
-			
-
 		</section>
 	</main>
 </div>
 
-<style>
-	.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0;}
-	.svc{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
-	.svc-ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;}
-	.svc-ic svg{width:22px;height:22px;}
-	.svc-lb{font-size:10.5px;font-weight:600;color:var(--text);text-align:center;line-height:1.3;}
-
-</style>

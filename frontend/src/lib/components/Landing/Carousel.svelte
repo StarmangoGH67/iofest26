@@ -79,7 +79,7 @@
     });
 </script>
 
-<div class="carousel-container lg:h-50 w-full mt-2.5 lg:mt-0 lg:min-w-[40%] bg-emerald-500">
+<div class="carousel-container min-w-full lg:h-50 w-full mt-2.5 lg:mt-0 sm:min-w-[70vw] sm:max-w-[70vw] lg:min-w-[50%]">
     <div 
         class="carousel-viewport mt-2"
         onmousedown={handleStart}
@@ -95,7 +95,7 @@
         {#each items as item, i}
             {#if i === current}
                 <div
-                    class="c-card lg:max-w-md lg:h-50 theme-{item.theme}"
+                    class="c-card md:max-w-lg lg:h-50 theme-{item.theme}"
                     in:fly={{ y: 24, duration: 600, easing: cubicOut }}
                     out:fade={{ duration: 300 }}
                 >
@@ -211,7 +211,16 @@
     }
 
     .c-title { font-size: 14px; font-weight: 800; line-height: 1.35; margin: 0; }
-    .c-desc { font-size: 11.5px; line-height: 1.5; opacity: 0.85; margin: 0; }
+    .c-desc { 
+        font-size: 11.5px; 
+        line-height: 1.5; 
+        opacity: 0.85; 
+        margin: 0; 
+        max-height: calc(1.5em * 2);
+        overflow-y: auto;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+    }
     .c-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .c-time { font-size: 10px; opacity: 0.6; }
     .c-action { background: rgba(255, 255, 255, 0.2); border: none; color: white; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 700; cursor: pointer; }
