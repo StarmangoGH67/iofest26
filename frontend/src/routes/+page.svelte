@@ -1,29 +1,17 @@
 <script lang="ts">
-	import { FileText, Megaphone, Info } from 'lucide-svelte';
+	import { FileText, Megaphone, Info, MessageSquare, House, BookText, Globe } from 'lucide-svelte';
 	import Header from '$lib/components/Landing/Header.svelte';
+	import ReportSection from '$lib/components/Landing/LayananPelaporan.svelte';
 	import SectionHeader from '$lib/components/sectionHeader.svelte';
-	import ServiceButton from '$lib/components/ServiceButton.svelte';
+	import ActionButtons from '$lib/components/ActionButtons.svelte';
+	import StatCard from '$lib/components/StatCard.svelte';
 
-	// User Data
-	const user = {
-		name: 'Kakikukeko',
-		imageUrl: null
-	};
+	const user = { name: 'Kakikukeko', imageUrl: null };
 
-	// Service Data
 	const services = [
-		{
-			title: 'Ajukan Permohonan Pelayanan',
-			icon: FileText
-		},
-		{
-			title: 'Buat Laporan',
-			icon: Megaphone
-		},
-		{
-			title: 'Lihat Informasi Publik',
-			icon: Info
-		}
+		{ title: 'Ajukan Permohonan Pelayanan', icon: FileText },
+		{ title: 'Buat Laporan', icon: Megaphone },
+		{ title: 'Lihat Informasi Publik', icon: Info }
 	];
 
 	interface CardItem {
@@ -70,14 +58,7 @@
 		}
 	];
 
-	interface ReportCategory {
-		title: string;
-		icon: any; // keyof typeof Icons dari Lucide
-		bg: string;
-		color: string;
-	}
-
-	const categories: ReportCategory[] = [
+	const categories = [
 		{ title: 'Jalan Rusak', icon: 'Truck', bg: '#FDECEA', color: '#E53935' },
 		{ title: 'Lampu Jalan', icon: 'Sun', bg: '#FEF3E2', color: '#F59E0B' },
 		{ title: 'Drainase', icon: 'Waves', bg: '#E8F0FD', color: '#2563EB' },
@@ -87,63 +68,58 @@
 		{ title: 'Darurat', icon: 'Zap', bg: '#FFE8E8', color: '#DC2626' },
 		{ title: 'Cari Laporan', icon: 'Search', bg: '#E8EEF8', color: '#1E40AF' }
 	];
-</script>
 
-<svelte:head>
-	<title>KakiKuKeKo — Layanan Publik Digital</title>
-</svelte:head>
+	const stats = [
+		{ value: '1.2', suffix: 'K', label: 'Laporan masuk' },
+		{ value: '999', label: 'Laporan selesai' },
+		{ value: '99', suffix: '%', label: 'Tingkat respons' }
+	];
+
+	const statsPublik = [
+		{ value: '2025', label: 'Tahun Info Terbaru' },
+		{ value: '67', label: 'Info Berkala Aktif' },
+		{ value: '200', suffix: '+', label: 'Dokumen Tersedia' }
+	];
+
+	const actions = [
+		{ icon: MessageSquare, title: 'Laporan Pelayanan', bgColor: '#109458', isInverse: false },
+		{ icon: House, title: 'Laporan Fasilitas Umum', bgColor: '#109458', isInverse: true }
+	];
+</script>
 
 <div class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center pb-24">
 	<Header name={user.name} imageUrl={user.imageUrl} {services} {cardItems} />
 
-	<main class="mx-auto max-w-4xl px-6 py-8">
-		<section class="flex flex-col lg:flex-row">
+	<main class="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8">
+		<ReportSection {categories} {stats} {actions} />
+		<section class="flex flex-col gap-3">
 			<SectionHeader
-				heading="PELAPORAN"
-				judul="Layanan Pelaporan"
-				desc="Laporkan kerusakan fasilitas publik dan layanan pemerintah. Setiap laporan diproses dan ditindaklanjuti secara transparan."
+				heading="ADMINISTRASI"
+				judul="Layanan Administrasi"
+				desc="Urus keperluan administrasi kependudukan, pajak daerah, dan perizinan secara digital , cepat, mudah, dan terpadu."
 			/>
-			<div class="flex w-full flex-col items-center">
-				<div class="services-grid">
-					{#each categories as item}
-						<ServiceButton
-							title={item.title}
-							iconName={item.icon}
-							bgColor={item.bg}
-							iconColor={item.color}
-						/>
-					{/each}
-				</div>
+			<ActionButtons
+				icon={BookText}
+				title="Lihat Semua Layanan"
+				bgColor="#109458"
+				isInverse={false}
+			/>
+		</section>
+		<section>
+			<SectionHeader
+				heading="TRANSPARANSI"
+				judul="Informasi Publik"
+				desc="Data, statistik, dan dokumen resmi pemerintah daerah yang terbuka dan dapat diakses oleh seluruh masyarakat."
+			/>
 
-				<div class="my-4 flex w-full rounded-2xl bg-white shadow-sm">
-					<div class="flex flex-1 flex-col items-center gap-1 border-r border-gray-100 py-4">
-						<span class="text-2xl font-black text-emerald-600">1.2<sup class="text-sm">K</sup></span
-						>
-						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
-					</div>
-					<div class="flex flex-1 flex-col items-center gap-1 border-r border-gray-100 py-4">
-						<span class="text-2xl font-black text-emerald-600">999</span>
-						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
-					</div>
-					<div class="flex flex-1 flex-col items-center gap-1 py-4">
-						<span class="text-2xl font-black text-emerald-600">99<sup class="text-sm">%</sup></span>
-						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
-					</div>
-				</div>
+			<StatCard stats={statsPublik} />
 
-				<div class="flex w-full flex-col gap-3">
-					<button
-						class="w-full rounded-2xl bg-emerald-600 py-3.5 text-[15px] font-bold text-white transition-transform hover:brightness-110 active:scale-95"
-					>
-						Laporan Pelayanan
-					</button>
-					<button
-						class="w-full rounded-2xl border-2 border-emerald-600 bg-transparent py-3.5 text-[15px] font-bold text-emerald-600 transition-transform hover:bg-emerald-50 active:scale-95"
-					>
-						Laporan Fasilitas Umum
-					</button>
-				</div>
-			</div>
+			<ActionButtons
+				icon={Globe}
+				title="Jelajah Semua Informasi"
+				bgColor="#109458"
+				isInverse={false}
+			/>
 		</section>
 	</main>
 </div>
