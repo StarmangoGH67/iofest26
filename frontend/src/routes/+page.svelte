@@ -27,49 +27,49 @@
 	];
 
 	interface CardItem {
-        theme: string;
-        title: string;
-        desc: string;
-        time: string;
-		location: string; 
-        action: string;
-    }
+		theme: string;
+		title: string;
+		desc: string;
+		time: string;
+		location: string;
+		action: string;
+	}
 
-    const cardItems: CardItem[] = [
-        {
-            theme: 'warning',
-            title: 'Banjir di Jl. Mulawarman — Ketinggian 30cm',
-            desc: 'Warga diimbau menghindari ruas Jl. Mulawarman arah Pasar Baru. Tim BPBD sudah dikerahkan ke lokasi.',
-            time: '2 menit lalu',
-			location: 'Balikpapan Barat', 
-            action: 'Lihat',
-        },
-        {
-            theme: 'news',
-            title: 'Lampu Jalan Mati — Jl. Sudirman KM 5',
-            desc: 'Dilaporkan oleh warga pada pukul 19.24. Status: diteruskan ke Dinas PU. Estimasi perbaikan 2x24 jam.',
-            time: '14 menit lalu',
-			location: 'Balikpapan Selatan', 
-            action: 'Pantau',
-        },
-        {
-            theme: 'emergency',
-            title: 'Lampu Jalan Mati — Jl. Sudirman KM 5',
-            desc: 'Dilaporkan oleh warga pada pukul 19.24. Status: diteruskan ke Dinas PU. Estimasi perbaikan 2x24 jam.',
-            time: '14 menit lalu',
-			location: 'Balikpapan Selatan', 
-            action: 'Pantau',
-        },
-        {
-            theme: 'info',
-            title: 'APBD Perubahan 2025 Telah Dipublikasikan',
-            desc: 'Dokumen APBD askjdjasdasdjsaj jsa jd asjd asji dasjik djisa djikasjkas jkas dajksd asjidasjik dajsk asjkd asjdasj asj asjd asj asjcasjkxc asjk xcas cj as jisad jisdjic sdj sdjc jshd chjsd ch jsd hjsd hjsd Perubahan Kota Balikpapan Tahun Anggaran 2025 kini tersedia di portal Informasi Publik.',
-            time: '1 jam lalu',
-			location: 'Portal Resmi', 
-            action: 'Unduh'
-        }
-    ];
-	
+	const cardItems: CardItem[] = [
+		{
+			theme: 'warning',
+			title: 'Banjir di Jl. Mulawarman — Ketinggian 30cm',
+			desc: 'Warga diimbau menghindari ruas Jl. Mulawarman arah Pasar Baru. Tim BPBD sudah dikerahkan ke lokasi.',
+			time: '2 menit lalu',
+			location: 'Balikpapan Barat',
+			action: 'Lihat'
+		},
+		{
+			theme: 'news',
+			title: 'Lampu Jalan Mati — Jl. Sudirman KM 5',
+			desc: 'Dilaporkan oleh warga pada pukul 19.24. Status: diteruskan ke Dinas PU. Estimasi perbaikan 2x24 jam.',
+			time: '14 menit lalu',
+			location: 'Balikpapan Selatan',
+			action: 'Pantau'
+		},
+		{
+			theme: 'emergency',
+			title: 'Lampu Jalan Mati — Jl. Sudirman KM 5',
+			desc: 'Dilaporkan oleh warga pada pukul 19.24. Status: diteruskan ke Dinas PU. Estimasi perbaikan 2x24 jam.',
+			time: '14 menit lalu',
+			location: 'Balikpapan Selatan',
+			action: 'Pantau'
+		},
+		{
+			theme: 'info',
+			title: 'APBD Perubahan 2025 Telah Dipublikasikan',
+			desc: 'Dokumen APBD askjdjasdasdjsaj jsa jd asjd asji dasjik djisa djikasjkas jkas dajksd asjidasjik dajsk asjkd asjdasj asj asjd asj asjcasjkxc asjk xcas cj as jisad jisdjic sdj sdjc jshd chjsd ch jsd hjsd hjsd Perubahan Kota Balikpapan Tahun Anggaran 2025 kini tersedia di portal Informasi Publik.',
+			time: '1 jam lalu',
+			location: 'Portal Resmi',
+			action: 'Unduh'
+		}
+	];
+
 	interface ReportCategory {
 		title: string;
 		icon: any; // keyof typeof Icons dari Lucide
@@ -93,22 +93,17 @@
 	<title>KakiKuKeKo — Layanan Publik Digital</title>
 </svelte:head>
 
-<div class="relative mx-auto min-h-screen max-w-6xl flex flex-col items-center pb-24">
-	<Header 
-		name={user.name} 
-		imageUrl={user.imageUrl} 
-		{services}
-		{cardItems}
-	/>
+<div class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center pb-24">
+	<Header name={user.name} imageUrl={user.imageUrl} {services} {cardItems} />
 
-	<main class="px-6 py-8 max-w-4xl mx-auto">
-    	<section class="flex flex-col lg:flex-row">
-			<SectionHeader 
-				heading= "PELAPORAN" 
-				judul= "Layanan Pelaporan" 
-				desc= "Laporkan kerusakan fasilitas publik dan layanan pemerintah. Setiap laporan diproses dan ditindaklanjuti secara transparan." 
+	<main class="mx-auto max-w-4xl px-6 py-8">
+		<section class="flex flex-col lg:flex-row">
+			<SectionHeader
+				heading="PELAPORAN"
+				judul="Layanan Pelaporan"
+				desc="Laporkan kerusakan fasilitas publik dan layanan pemerintah. Setiap laporan diproses dan ditindaklanjuti secara transparan."
 			/>
-			<div class="w-full flex flex-col items-center">
+			<div class="flex w-full flex-col items-center">
 				<div class="services-grid">
 					{#each categories as item}
 						<ServiceButton
@@ -117,29 +112,34 @@
 							bgColor={item.bg}
 							iconColor={item.color}
 						/>
-					{/each}	
+					{/each}
 				</div>
 
-				<div class="flex w-full bg-white rounded-2xl shadow-sm my-4">
-					<div class="flex-1 flex flex-col items-center gap-1 py-4 border-r border-gray-100">
-						<span class="text-2xl font-black text-emerald-600">1.2<sup class="text-sm">K</sup></span>
-						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+				<div class="my-4 flex w-full rounded-2xl bg-white shadow-sm">
+					<div class="flex flex-1 flex-col items-center gap-1 border-r border-gray-100 py-4">
+						<span class="text-2xl font-black text-emerald-600">1.2<sup class="text-sm">K</sup></span
+						>
+						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
 					</div>
-					<div class="flex-1 flex flex-col items-center gap-1 py-4 border-r border-gray-100">
+					<div class="flex flex-1 flex-col items-center gap-1 border-r border-gray-100 py-4">
 						<span class="text-2xl font-black text-emerald-600">999</span>
-						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
 					</div>
-					<div class="flex-1 flex flex-col items-center gap-1 py-4">
+					<div class="flex flex-1 flex-col items-center gap-1 py-4">
 						<span class="text-2xl font-black text-emerald-600">99<sup class="text-sm">%</sup></span>
-						<span class="text-[11px] text-gray-400 font-medium">Laporan masuk</span>
+						<span class="text-[11px] font-medium text-gray-400">Laporan masuk</span>
 					</div>
 				</div>
 
-				<div class="flex flex-col gap-3 w-full">
-					<button class="w-full py-3.5 bg-emerald-600 text-white font-bold text-[15px] rounded-2xl active:scale-95 transition-transform hover:brightness-110">
+				<div class="flex w-full flex-col gap-3">
+					<button
+						class="w-full rounded-2xl bg-emerald-600 py-3.5 text-[15px] font-bold text-white transition-transform hover:brightness-110 active:scale-95"
+					>
 						Laporan Pelayanan
 					</button>
-					<button class="w-full py-3.5 bg-transparent text-emerald-600 font-bold text-[15px] rounded-2xl border-2 border-emerald-600 active:scale-95 transition-transform hover:bg-emerald-50">
+					<button
+						class="w-full rounded-2xl border-2 border-emerald-600 bg-transparent py-3.5 text-[15px] font-bold text-emerald-600 transition-transform hover:bg-emerald-50 active:scale-95"
+					>
 						Laporan Fasilitas Umum
 					</button>
 				</div>
@@ -147,4 +147,3 @@
 		</section>
 	</main>
 </div>
-

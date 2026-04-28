@@ -55,9 +55,12 @@ header {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(calc(25% - 20px), 70px, calc(25% - 20px)), 2fr));
-    gap: clamp(12px, 3vw, 20px);
-    margin: 24px 0;
-    width: 100%;
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(clamp(calc(25% - 20px), 70px, calc(25% - 20px)), 2fr)
+	);
+	gap: clamp(12px, 3vw, 20px);
+	margin: 24px 0;
+	width: 100%;
 }
