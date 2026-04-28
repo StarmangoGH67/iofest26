@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { FileText, Megaphone, Info } from 'lucide-svelte';
 	import Carousel from './Carousel.svelte';
 	import '../../../routes/style.scss';
 
@@ -44,7 +43,7 @@
 		<section
 			class="relative z-10 mt-4 grid w-full grid-cols-3 gap-2 lg:w-1/3 lg:grid-cols-1 lg:gap-4"
 		>
-			{#each services as service}
+			{#each services as service (service)}
 				<button
 					class="service-card flex w-full flex-col items-center justify-start p-3 text-center transition-transform active:scale-95 lg:flex-row lg:gap-3 lg:px-5 lg:text-start"
 				>

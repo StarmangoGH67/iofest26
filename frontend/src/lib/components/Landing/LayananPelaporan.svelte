@@ -3,7 +3,6 @@
 	import ServiceButton from '$lib/components/ServiceButton.svelte';
 	import ActionButtons from '$lib/components/ActionButtons.svelte';
 	import StatCard from '$lib/components/StatCard.svelte';
-	import type * as Icons from 'lucide-svelte';
 
 	interface ReportCategory {
 		title: string;
@@ -42,7 +41,7 @@
 	/>
 	<div class="flex w-full flex-col items-center">
 		<div class="services-grid">
-			{#each categories as item}
+			{#each categories as item (item)}
 				<ServiceButton
 					title={item.title}
 					iconName={item.icon}
@@ -55,7 +54,7 @@
 		<StatCard {stats} />
 
 		<div class="flex w-full flex-col gap-3">
-			{#each actions as action}
+			{#each actions as action (action)}
 				<ActionButtons
 					icon={action.icon}
 					title={action.title}

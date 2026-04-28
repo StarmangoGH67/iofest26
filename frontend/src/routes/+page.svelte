@@ -5,6 +5,7 @@
 	import SectionHeader from '$lib/components/sectionHeader.svelte';
 	import ActionButtons from '$lib/components/ActionButtons.svelte';
 	import StatCard from '$lib/components/StatCard.svelte';
+	import AccordionSection from '$lib/components/AccordionSection.svelte';
 
 	const user = { name: 'Kakikukeko', imageUrl: null };
 
@@ -98,6 +99,25 @@
 				judul="Layanan Administrasi"
 				desc="Urus keperluan administrasi kependudukan, pajak daerah, dan perizinan secara digital , cepat, mudah, dan terpadu."
 			/>
+
+			<AccordionSection
+				accentColor="#109458"
+				data={[
+					{
+						count: 4,
+						title: 'Kesehatan',
+						desc: 'Ini kesehatan lorem ipsum dolores amor tiamor',
+						items: ['Dokter tirta', 'RSJ', 'UGD', 'Healing']
+					},
+					{
+						count: 7,
+						title: 'Pendidikan',
+						desc: 'Layanan pendidikan daerah',
+						items: ['SD', 'SMP', 'SMA', 'Beasiswa']
+					}
+				]}
+			/>
+
 			<ActionButtons
 				icon={BookText}
 				title="Lihat Semua Layanan"

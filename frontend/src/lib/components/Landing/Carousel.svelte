@@ -108,7 +108,7 @@
 		role="presentation"
 		style="cursor: grab;"
 	>
-		{#each items as item, i}
+		{#each items as item, i (i)}
 			{#if i === current}
 				<div
 					class="c-card md:max-w-lg lg:h-50 theme-{item.theme}"
@@ -157,7 +157,7 @@
 	</div>
 
 	<div class="carousel-dots">
-		{#each items as _, i}
+		{#each items as _, i (i)}
 			<button
 				class="dot {i === current ? 'active' : ''}"
 				onclick={() => {
