@@ -1,0 +1,30 @@
+:global(*, *::before, *::after) {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+}
+
+:global(body) {
+	margin: 0;
+	background: #1a1a2e;
+	font-family: 'Nunito', 'Segoe UI', sans-serif;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	padding: 20px 0 40px;
+}
+
+.shell {
+	width: 100%;
+	max-width: 1040px;
+	background: #f2f5f3;
+	min-height: 100vh;
+	position: relative;
+}
+
+.search-wrap {
+	margin: 4px 0 14px;
+}
+
+.list-wrap {
+	padding-bottom: 8px;
+}

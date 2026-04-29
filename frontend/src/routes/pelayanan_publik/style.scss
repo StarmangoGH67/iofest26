@@ -1,0 +1,177 @@
+.shell {
+	width: 100%;
+	margin: 0 auto;
+	background: #f2f5f3;
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+}
+
+.main-header {
+	border-radius: 0 0 24px 24px;
+	color: white;
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(140deg, #0a4a2e 0%, #1a7a50 55%, #2bbf7a 100%);
+}
+
+.main-header::before {
+	content: '';
+	position: absolute;
+	top: -30px;
+	right: -30px;
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.07);
+	pointer-events: none;
+}
+
+.header-top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.header-breadcrumb {
+	font-size: 11.5px;
+	opacity: 0.78;
+	margin: 0 0 6px;
+}
+
+.header-title {
+	font-size: 28px;
+	font-weight: 900;
+	margin: 0;
+	line-height: 1.15;
+	letter-spacing: -0.5px;
+}
+
+.header-icon {
+	width: 52px;
+	height: 52px;
+	opacity: 0.8;
+	flex-shrink: 0;
+}
+
+.header-icon :global(svg) {
+	width: 100%;
+	height: 100%;
+}
+
+.header-desc {
+	font-size: 12px;
+	line-height: 1.55;
+	opacity: 0.86;
+	margin: 0;
+	position: relative;
+	z-index: 1;
+}
+
+.stats-strip {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background: white;
+	margin: 14px 16px;
+	border-radius: 14px;
+	padding: 12px 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.stat-chip {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	flex: 1;
+}
+
+.stat-v {
+	font-size: 18px;
+	font-weight: 800;
+	color: #111;
+	letter-spacing: -0.5px;
+}
+
+.stat-l {
+	font-size: 10.5px;
+	color: #9ca3af;
+}
+
+.stat-divider {
+	width: 1px;
+	height: 28px;
+	background: #f0f0f0;
+}
+
+.user-card {
+	margin: 0 16px 16px;
+	border-radius: 14px;
+	padding: 14px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.user-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: white;
+}
+
+.user-avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.25);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 15px;
+	font-weight: 800;
+}
+
+.user-name {
+	font-size: 13px;
+	font-weight: 700;
+	color: white;
+}
+
+.user-id {
+	font-size: 11px;
+	color: rgba(255, 255, 255, 0.75);
+	margin-top: 2px;
+}
+
+.user-badge {
+	opacity: 0.85;
+}
+
+.search-section {
+	margin-bottom: 16px;
+}
+
+.list-section {
+	padding: 0 16px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.section-title {
+	font-size: 15px;
+	font-weight: 700;
+	color: #1f2937;
+	margin: 0 0 12px;
+	text-align: center;
+}
+
+.empty-state {
+	text-align: center;
+	color: #9ca3af;
+	font-size: 14px;
+	padding: 32px 0;
+}
