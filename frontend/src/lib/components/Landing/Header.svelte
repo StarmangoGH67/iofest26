@@ -46,7 +46,7 @@
 		>
 			{#each services as service (service)}
 				<button
-					class="service-card flex w-full flex-col items-center justify-start p-3 text-center transition-transform active:scale-95 lg:flex-row lg:gap-3 lg:px-5 lg:text-start"
+					class="service-card flex w-full flex-col items-center justify-start p-3 text-center transition-transform active:scale-95 md:backdrop-blur-sm lg:flex-row lg:gap-3 lg:px-5 lg:text-start"
 				>
 					<div class="icon-wrapper mb-2 lg:mb-0">
 						<service.icon class="h-6 w-6 text-white lg:h-7 lg:w-7" />

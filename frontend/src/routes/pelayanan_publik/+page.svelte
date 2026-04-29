@@ -1,9 +1,8 @@
 <script lang="ts">
-	import SearchBar from '$lib/components/pelayanan_publik/SearchBar.svelte';
+	import PelayananSearch from '$lib/components/pelayanan_publik/PelayananSearch.svelte';
 	import CategoryCard from '$lib/components/pelayanan_publik/CategoryCard.svelte';
-	import { parentPageCategories } from '$lib/data/services';
+	import { pelayananCategories } from '$lib/data/pelayanan_publik_data';
 	import './style.scss';
-	import StatCard from '$lib/components/StatCard.svelte';
 
 	const PRIMARY = '#109458';
 
@@ -11,12 +10,12 @@
 
 	const filtered = $derived(
 		searchQuery.trim()
-			? parentPageCategories.filter(
+			? pelayananCategories.filter(
 					(c) =>
-						c.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+						c.cardTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
 						c.description.toLowerCase().includes(searchQuery.toLowerCase())
 				)
-			: parentPageCategories
+			: pelayananCategories
 	);
 </script>
 
@@ -24,26 +23,32 @@
 	<title>Pelayanan Publik</title>
 </svelte:head>
 
-<div class="shell max-w-6xl">
-	<!-- Header -->
-	<header class="main-header px-4 pt-14 pb-4 md:px-16 md:pb-12">
+<div class="page-wrap mx-auto max-w-5xl">
+	<header class="main-header px-5 pt-14 pb-7 md:px-12 md:pb-12">
+		<div class="circle-1"></div>
+		<div class="circle-2"></div>
+
 		<div class="header-top">
-			<div class="header-left">
-				<p class="header-breadcrumb">Beranda / Pelayanan publik</p>
+			<div>
+				<p class="breadcrumb-text">Beranda / Pelayanan publik</p>
 				<h1 class="header-title">Pelayanan<br />Publik</h1>
 			</div>
 			<div class="header-icon" aria-hidden="true">
 				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
 					viewBox="0 0 24 24"
 					fill="none"
-					stroke="white"
-					stroke-width="1.6"
+					stroke="#ffffff"
+					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
+					class="lucide lucide-hand-helping-icon lucide-hand-helping"
+					><path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14" /><path
+						d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"
+					/><path d="m2 13 6 6" /></svg
 				>
-					<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-					<polyline points="9 22 9 12 15 12 15 22" />
-				</svg>
 			</div>
 		</div>
 		<p class="header-desc">
@@ -53,40 +58,34 @@
 		</p>
 	</header>
 
-	<!-- StatsCard -->
-	<StatCard
-		stats={[
-			{ value: '1.2', suffix: 'K', label: 'Laporan masuk' },
-			{ value: '999', label: 'Laporan selesai' },
-			{ value: '99', suffix: '%', label: 'Tingkat respons' }
-		]}
-	/>
-	<!-- SearchBar -->
-	<div class="search-section">
-		<SearchBar placeholder="Cari Layanan" bind:value={searchQuery} primaryColor={PRIMARY} />
-	</div>
+	<main class="main-content mx-auto max-w-4xl">
+		<!-- Searchbar -->
+		<PelayananSearch placeholder="Cari Layanan" bind:value={searchQuery} primaryColor={PRIMARY} />
 
-	<!-- ListSections -->
-	<div class="list-section">
-		<h2 class="section-title">Daftar Layanan yang Tersedia</h2>
+		<!-- List Section -->
+		<div class="list-section">
+			<h2 class="section-title">Daftar Layanan yang Tersedia</h2>
 
-		{#if filtered.length === 0}
-			<div class="empty-state">
-				<p>Tidak ada layanan untuk "<strong>{searchQuery}</strong>"</p>
-			</div>
-		{:else}
-			{#each filtered as cat (cat.slug)}
-				<CategoryCard
-					slug={cat.slug}
-					label={cat.label}
-					shortLabel={cat.shortLabel}
-					description={cat.description}
-					icon={cat.icon}
-					ctaLabel={cat.ctaLabel}
-					primary={cat.theme.primary}
-					secondary={cat.theme.secondary}
-				/>
-			{/each}
-		{/if}
-	</div>
+			{#if filtered.length === 0}
+				<div class="empty-state">
+					<p>Tidak ada layanan untuk "<strong>{searchQuery}</strong>"</p>
+				</div>
+			{:else}
+				<div class="categories-grid">
+					{#each filtered as cat (cat.slug)}
+						<CategoryCard
+							slug={cat.slug}
+							sectionLabel={cat.sectionLabel}
+							cardTitle={cat.cardTitle}
+							description={cat.description}
+							icon={cat.icon}
+							ctaLabel={cat.ctaLabel}
+							primary={cat.theme.primary}
+							primaryLight={cat.theme.primaryLight}
+						/>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</main>
 </div>

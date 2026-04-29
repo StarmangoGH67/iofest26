@@ -1,9 +1,21 @@
 import { error } from '@sveltejs/kit';
-import { allServicePages } from '$lib/data/services';
-import type { PageLoad } from './$types';
+import { allPelayananPages } from '$lib/data/pelayanan_publik_data';
+import type { PelayananPage } from '$lib/data/pelayanan_publik_data';
 
-export const load: PageLoad = ({ params }) => {
-	const page = allServicePages[params.slug];
-	if (!page) throw error(404, `Page "${params.slug}" not found`);
+interface LoadParams {
+	params: { slug: string };
+}
+
+interface LoadResult {
+	page: PelayananPage;
+}
+
+export const load = ({ params }: LoadParams): LoadResult => {
+	const page = allPelayananPages[params.slug];
+
+	if (!page) {
+		error(404, `Layanan "${params.slug}" tidak ditemukan`);
+	}
+
 	return { page };
 };

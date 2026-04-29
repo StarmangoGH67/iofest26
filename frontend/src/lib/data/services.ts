@@ -9,10 +9,9 @@ export const kependudukanPage: ServicePage = {
 	breadcrumb: ['Beranda', 'Pelayanan publik', 'Kependudukan'],
 	iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
 	theme: {
-		primary: '#0B6E4F',
-		secondary: '#E8F5E9',
-		accent: '#1DB87E',
-		gradient: ['#0a4a2e', '#2bbf7a']
+		primary: '#5CCEFF',
+		secondary: '#119EF5',
+		gradient: ['#5CCEFF', '#119EF5']
 	},
 	stats: {
 		title: 'Statistik Pelayanan Kependudukan',
@@ -112,10 +111,9 @@ export const perizinanPage: ServicePage = {
 	breadcrumb: ['Beranda', 'Pelayanan publik', 'Perizinan'],
 	iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
 	theme: {
-		primary: '#1565C0',
-		secondary: '#E3F2FD',
-		accent: '#42A5F5',
-		gradient: ['#1565C0', '#1976D2']
+		primary: '#C7CA1D',
+		secondary: '#DFE145',
+		gradient: ['#C7CA1D', '#DFE145']
 	},
 	searchPlaceholder: 'Cari Layanan',
 	servicesTitle: 'Daftar Layanan yang Tersedia',
@@ -170,7 +168,6 @@ export const perpajakanPage: ServicePage = {
 	theme: {
 		primary: '#E65100',
 		secondary: '#FFF3E0',
-		accent: '#FF8F00',
 		gradient: ['#E65100', '#F57C00']
 	},
 	searchPlaceholder: 'Cari Layanan',
@@ -213,10 +210,9 @@ export const parentPageCategories = [
 		icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
 		ctaLabel: 'Buka Layanan Kependudukan',
 		theme: {
-			primary: '#0B6E4F',
-			secondary: '#E8F5E9',
-			accent: '#1DB87E',
-			gradient: ['#0B6E4F', '#1A9E6A'] as [string, string]
+			primary: '#119EF5',
+			secondary: '#C7EEFF',
+			gradient: ['#5CCEFF', '#119EF5'] as [string, string]
 		}
 	},
 	{
@@ -228,10 +224,9 @@ export const parentPageCategories = [
 		icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
 		ctaLabel: 'Buka Layanan Perizinan',
 		theme: {
-			primary: '#1565C0',
-			secondary: '#E3F2FD',
-			accent: '#42A5F5',
-			gradient: ['#1565C0', '#1976D2'] as [string, string]
+			primary: '#C7CA1D',
+			secondary: '#F6FFD6',
+			gradient: ['#C7CA1D', '#1976D2'] as [string, string]
 		}
 	},
 	{
@@ -245,7 +240,6 @@ export const parentPageCategories = [
 		theme: {
 			primary: '#E65100',
 			secondary: '#FFF3E0',
-			accent: '#FF8F00',
 			gradient: ['#E65100', '#F57C00'] as [string, string]
 		}
 	}

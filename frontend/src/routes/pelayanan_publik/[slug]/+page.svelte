@@ -1,84 +1,99 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import PageHeader from '$lib/components/pelayanan_publik/PageHeader.svelte';
-	import SearchBar from '$lib/components/pelayanan_publik/SearchBar.svelte';
-	import ServiceList from '$lib/components/pelayanan_publik/ServiceList.svelte';
-	import StatCard from '$lib/components/pelayanan_publik/StatCard.svelte';
-	import Accordion from '$lib/components/pelayanan_publik/Accordion.svelte';
-	import type { PageData } from './$types';
+	import PelayananHeader from '$lib/components/pelayanan_publik/PelayananHeader.svelte';
+	import PelayananSearch from '$lib/components/pelayanan_publik/PelayananSearch.svelte';
+	import PelayananServiceCard from '$lib/components/pelayanan_publik/PelayananServiceCard.svelte';
+	import PelayananStats from '$lib/components/pelayanan_publik/PelayananStats.svelte';
+	import AccordionSection from '$lib/components/AccordionSection.svelte';
+	import type { PelayananPage } from '$lib/data/pelayanan_publik_data';
 	import './style.scss';
-	// import { resolve } from '$app/navigation';
 
-	let { data }: { data: PageData } = $props();
-	const { page } = data;
+	interface Props {
+		data: { page: PelayananPage };
+	}
+
+	let { data }: Props = $props();
+
+	const page = $derived(data.page);
 
 	let searchQuery = $state('');
 
-	function handleBack() {
-		// resolve();
-		goto('/pelayanan_publik');
-	}
+	const filtered = $derived(
+		searchQuery.trim()
+			? page.services.filter(
+					(s) =>
+						s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+						s.description.toLowerCase().includes(searchQuery.toLowerCase())
+				)
+			: page.services
+	);
 </script>
 
 <svelte:head>
 	<title>{page.title} — Pelayanan Publik</title>
 </svelte:head>
 
-<div class="shell mx-auto max-w-6xl">
-	<PageHeader
+<div class="page-wrap mx-auto max-w-6xl">
+	<PelayananHeader
 		title={page.title}
 		description={page.description}
-		iconSvg={page.iconSvg}
+		icon={page.icon}
 		breadcrumb={page.breadcrumb}
-		primaryColor={page.theme.primary}
-		gradientStart={page.theme.gradient[0]}
-		gradientEnd={page.theme.gradient[1]}
-		onBack={handleBack}
+		gradientFrom={page.theme.gradientFrom}
+		gradientTo={page.theme.gradientTo}
 	/>
 
-	<!-- Stats (optional) -->
-	{#if page.stats}
-		<StatCard
-			title={page.stats.title}
-			items={page.stats.items}
-			ctaLabel={page.stats.ctaLabel}
-			ctaHref={page.stats.ctaHref}
-			primaryColor={page.theme.primary}
-			gradientStart={page.theme.gradient[0]}
-			gradientEnd={page.theme.gradient[1]}
-		/>
-	{/if}
+	<main class="main-content">
+		<!-- Stats -->
+		{#if page.stats}
+			<PelayananStats
+				title={page.stats.title}
+				items={page.stats.items}
+				ctaLabel={page.stats.ctaLabel}
+				ctaHref={page.stats.ctaHref}
+				gradientFrom={page.theme.gradientFrom}
+				gradientTo={page.theme.gradientTo}
+			/>
+		{/if}
 
-	<!-- Flow accordion (optional) -->
-	{#if page.flow}
-		<Accordion
-			label={page.flow.title}
-			steps={page.flow.steps}
-			primaryColor={page.theme.primary}
-			secondaryColor={page.theme.secondary}
-		/>
-	{/if}
+		<!-- Flow accordion -->
+		{#if page.flow}
+			<AccordionSection
+				accentColor={page.theme.primary}
+				data={page.flow.steps.map((s) => ({
+					count: s.count,
+					title: s.title,
+					desc: s.desc,
+					items: s.items
+				}))}
+			/>
+		{/if}
 
-	<!-- Search -->
-	<div class="search-wrap">
-		<SearchBar
+		<!-- Search -->
+		<PelayananSearch
 			placeholder={page.searchPlaceholder}
 			bind:value={searchQuery}
 			primaryColor={page.theme.primary}
 		/>
-	</div>
 
-	<!-- Services -->
-	<div class="list-wrap">
-		<ServiceList
-			title={page.servicesTitle}
-			services={page.services}
-			primaryColor={page.theme.primary}
-			secondaryColor={page.theme.secondary}
-			{searchQuery}
-		/>
-	</div>
+		<!-- Services -->
+		<section class="services-section">
+			<h2 class="section-title">{page.servicesTitle}</h2>
 
-	<!-- Bottom spacer -->
-	<div style="height: 32px;"></div>
+			{#if filtered.length === 0}
+				<p class="empty-state">
+					Tidak ada layanan untuk "<strong>{searchQuery}</strong>"
+				</p>
+			{:else}
+				<div class="services-grid">
+					{#each filtered as service (service.id)}
+						<PelayananServiceCard
+							{service}
+							primaryColor={page.theme.primary}
+							primaryLight={page.theme.primaryLight}
+						/>
+					{/each}
+				</div>
+			{/if}
+		</section>
+	</main>
 </div>

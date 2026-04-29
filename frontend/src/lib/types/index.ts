@@ -1,7 +1,6 @@
 export interface ServiceTheme {
 	primary: string;
 	secondary: string;
-	accent: string;
 	gradient: [string, string];
 }
 
@@ -16,7 +15,7 @@ export interface ServiceItem {
 	id: string;
 	title: string;
 	description: string;
-	icon: string; // SVG path or emoji fallback
+	icon: string;
 	iconBg?: string;
 	action: ServiceAction;
 }
