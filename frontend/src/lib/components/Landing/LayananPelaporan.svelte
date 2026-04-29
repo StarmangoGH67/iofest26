@@ -3,10 +3,11 @@
 	import ServiceButton from '$lib/components/ServiceButton.svelte';
 	import ActionButtons from '$lib/components/ActionButtons.svelte';
 	import StatCard from '$lib/components/StatCard.svelte';
+	import type { Component } from 'svelte';
 
 	interface ReportCategory {
 		title: string;
-		icon: any;
+		icon: Component;
 		bg: string;
 		color: string;
 	}
@@ -18,7 +19,7 @@
 	}
 
 	interface ActionButton {
-		icon?: any;
+		icon?: Component;
 		title: string;
 		bgColor: string;
 		isInverse: boolean;
@@ -44,7 +45,7 @@
 			{#each categories as item (item)}
 				<ServiceButton
 					title={item.title}
-					iconName={item.icon}
+					icon={item.icon as unknown as Component}
 					bgColor={item.bg}
 					iconColor={item.color}
 				/>

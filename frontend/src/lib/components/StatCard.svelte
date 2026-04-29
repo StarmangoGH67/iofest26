@@ -1,4 +1,3 @@
-<!-- StatBar.svelte -->
 <script lang="ts">
 	interface StatItem {
 		value: string;

@@ -1,17 +1,16 @@
 <script lang="ts">
-	import * as Icons from 'lucide-svelte';
 	import type { Component } from 'svelte';
 
 	interface Props {
-		iconName: keyof typeof Icons;
+		icon: Component;
 		title: string;
 		bgColor: string;
 		iconColor: string;
 	}
 
-	let { iconName, title, bgColor, iconColor }: Props = $props();
+	let { icon, title, bgColor, iconColor }: Props = $props();
 
-	const IconComponent = $derived((Icons[iconName] as unknown as Component) || Icons.HelpCircle);
+	const IconComponent = $derived(icon ?? null);
 </script>
 
 <div class="svc-item" role="button" tabindex="0">

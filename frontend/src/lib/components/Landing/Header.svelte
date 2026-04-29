@@ -2,7 +2,6 @@
 	import Carousel from './Carousel.svelte';
 	import '../../../routes/style.scss';
 	import type { Component } from 'svelte';
-	import { Camera } from 'lucide-svelte'; 
 
 	let { name, imageUrl, services, cardItems } = $props<{
 		name: string;

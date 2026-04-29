@@ -1,6 +1,7 @@
 <script lang="ts">
+	import type { Component } from 'svelte';
 	interface Props {
-		icon?: any;
+		icon?: Component;
 		title: string;
 		bgColor: string;
 		isInverse: boolean;

@@ -1,5 +1,23 @@
 <script lang="ts">
-	import { FileText, Megaphone, Info, MessageSquare, House, BookText, Globe, Camera } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
+	import {
+		FileText,
+		Megaphone,
+		Info,
+		MessageSquare,
+		House,
+		BookText,
+		Globe,
+		Camera,
+		Truck,
+		Sun,
+		Waves,
+		TreePineIcon,
+		LayoutGrid,
+		Trash2,
+		Zap,
+		Search
+	} from 'lucide-svelte';
 	import Header from '$lib/components/Landing/Header.svelte';
 	import ReportSection from '$lib/components/Landing/LayananPelaporan.svelte';
 	import SectionHeader from '$lib/components/sectionHeader.svelte';
@@ -61,14 +79,24 @@
 	];
 
 	const categories = [
-		{ title: 'Jalan Rusak', icon: 'Truck', bg: '#FDECEA', color: '#E53935' },
-		{ title: 'Lampu Jalan', icon: 'Sun', bg: '#FEF3E2', color: '#F59E0B' },
-		{ title: 'Drainase', icon: 'Waves', bg: '#E8F0FD', color: '#2563EB' },
-		{ title: 'Taman & RTH', icon: 'TreePadding', bg: '#E2F5F0', color: '#0D9488' },
-		{ title: 'Sampah', icon: 'Trash2', bg: '#FDE8F2', color: '#DB2777' },
-		{ title: 'Fasum Lain', icon: 'LayoutGrid', bg: '#F0ECFD', color: '#7C3AED' },
-		{ title: 'Darurat', icon: 'Zap', bg: '#FFE8E8', color: '#DC2626' },
-		{ title: 'Cari Laporan', icon: 'Search', bg: '#E8EEF8', color: '#1E40AF' }
+		{ title: 'Jalan Rusak', icon: Truck as unknown as Component, bg: '#FDECEA', color: '#E53935' },
+		{ title: 'Lampu Jalan', icon: Sun as unknown as Component, bg: '#FEF3E2', color: '#F59E0B' },
+		{ title: 'Drainase', icon: Waves as unknown as Component, bg: '#E8F0FD', color: '#2563EB' },
+		{
+			title: 'Taman & RTH',
+			icon: TreePineIcon as unknown as Component,
+			bg: '#E2F5F0',
+			color: '#0D9488'
+		},
+		{ title: 'Sampah', icon: Trash2 as unknown as Component, bg: '#FDE8F2', color: '#DB2777' },
+		{
+			title: 'Fasum Lain',
+			icon: LayoutGrid as unknown as Component,
+			bg: '#F0ECFD',
+			color: '#7C3AED'
+		},
+		{ title: 'Darurat', icon: Zap as unknown as Component, bg: '#FFE8E8', color: '#DC2626' },
+		{ title: 'Cari Laporan', icon: Search as unknown as Component, bg: '#E8EEF8', color: '#1E40AF' }
 	];
 
 	const stats = [
@@ -84,20 +112,30 @@
 	];
 
 	const actions = [
-		{ icon: MessageSquare, title: 'Laporan Pelayanan', bgColor: '#109458', isInverse: false },
-		{ icon: House, title: 'Laporan Fasilitas Umum', bgColor: '#109458', isInverse: true }
+		{
+			icon: MessageSquare as unknown as Component,
+			title: 'Laporan Pelayanan',
+			bgColor: '#109458',
+			isInverse: false
+		},
+		{
+			icon: House as unknown as Component,
+			title: 'Laporan Fasilitas Umum',
+			bgColor: '#109458',
+			isInverse: true
+		}
 	];
 </script>
 
 <div class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center pb-24">
 	<Header name={user.name} imageUrl={user.imageUrl} {services} {cardItems} />
-	<div class="w-full flex justify-center items-center -mt-12 z-40 ">
+	<div class="z-40 -mt-12 flex w-full items-center justify-center">
 		<a
-				href="/report"
-				class="bg-emerald-500 p-3 border-6 border-white rounded-full"
-				aria-label="Report Facility Button"
-			>
-			<Camera class="text-white w-12 h-12" />
+			href={resolve('/pelayanan_publik')}
+			class="rounded-full border-6 border-white bg-emerald-500 p-3"
+			aria-label="Report Facility Button"
+		>
+			<Camera class="h-12 w-12 text-white" />
 		</a>
 	</div>
 	<main class="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8">
@@ -128,7 +166,7 @@
 			/>
 
 			<ActionButtons
-				icon={BookText}
+				icon={BookText as unknown as Component}
 				title="Lihat Semua Layanan"
 				bgColor="#109458"
 				isInverse={false}
@@ -144,7 +182,7 @@
 			<StatCard stats={statsPublik} />
 
 			<ActionButtons
-				icon={Globe}
+				icon={Globe as unknown as Component}
 				title="Jelajah Semua Informasi"
 				bgColor="#109458"
 				isInverse={false}
