@@ -1,18 +1,19 @@
 <script lang="ts">
-	import { FileText, Megaphone, Info, MessageSquare, House, BookText, Globe } from 'lucide-svelte';
+	import { FileText, Megaphone, Info, MessageSquare, House, BookText, Globe, Camera } from 'lucide-svelte';
 	import Header from '$lib/components/Landing/Header.svelte';
 	import ReportSection from '$lib/components/Landing/LayananPelaporan.svelte';
 	import SectionHeader from '$lib/components/sectionHeader.svelte';
 	import ActionButtons from '$lib/components/ActionButtons.svelte';
 	import StatCard from '$lib/components/StatCard.svelte';
 	import AccordionSection from '$lib/components/AccordionSection.svelte';
+	import type { Component } from 'svelte';
 
 	const user = { name: 'Kakikukeko', imageUrl: null };
 
 	const services = [
-		{ title: 'Ajukan Permohonan Pelayanan', icon: FileText },
-		{ title: 'Buat Laporan', icon: Megaphone },
-		{ title: 'Lihat Informasi Publik', icon: Info }
+		{ title: 'Ajukan Permohonan Pelayanan', icon: FileText as unknown as Component },
+		{ title: 'Buat Laporan', icon: Megaphone as unknown as Component },
+		{ title: 'Lihat Informasi Publik', icon: Info as unknown as Component }
 	];
 
 	interface CardItem {
@@ -90,7 +91,15 @@
 
 <div class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center pb-24">
 	<Header name={user.name} imageUrl={user.imageUrl} {services} {cardItems} />
-
+	<div class="w-full flex justify-center items-center -mt-12 z-40 ">
+		<a
+				href="/report"
+				class="bg-emerald-500 p-3 border-6 border-white rounded-full"
+				aria-label="Report Facility Button"
+			>
+			<Camera class="text-white w-12 h-12" />
+		</a>
+	</div>
 	<main class="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8">
 		<ReportSection {categories} {stats} {actions} />
 		<section class="flex flex-col gap-3">

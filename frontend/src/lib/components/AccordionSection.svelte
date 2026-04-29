@@ -66,7 +66,7 @@
 		position: absolute;
 		left: 5px;
 		top: 32px;
-		bottom: 0;
+		bottom: -20px;
 		width: 2px;
 		opacity: 0.3;
 	}

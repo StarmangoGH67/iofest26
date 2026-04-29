@@ -1,11 +1,13 @@
 <script lang="ts">
 	import Carousel from './Carousel.svelte';
 	import '../../../routes/style.scss';
+	import type { Component } from 'svelte';
+	import { Camera } from 'lucide-svelte'; 
 
 	let { name, imageUrl, services, cardItems } = $props<{
 		name: string;
 		imageUrl: string | null;
-		services: Array<{ title: string; icon: any }>;
+		services: Array<{ title: string; icon: Component }>;
 		cardItems: Array<{
 			theme: string;
 			title: string;
@@ -19,7 +21,7 @@
 	const initial = $derived(name?.charAt(0).toUpperCase() ?? 'K');
 </script>
 
-<header class="header-main px-6 py-4 shadow-xl lg:px-12 lg:py-8">
+<header class="header-main px-6 pt-4 pb-20 shadow-xl lg:px-12 lg:pt-8">
 	<div class="circle-1 w-[30%] lg:w-[20%]"></div>
 	<div class="circle-2 left-[-30%] w-[60%] lg:left-[-20%] lg:w-[40%]"></div>
 

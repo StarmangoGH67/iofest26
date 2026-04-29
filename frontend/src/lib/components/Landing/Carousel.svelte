@@ -157,7 +157,7 @@
 	</div>
 
 	<div class="carousel-dots">
-		{#each items as _, i (i)}
+		{#each Array.from({ length: items.length }, (_, i) => i) as i (i)}
 			<button
 				class="dot {i === current ? 'active' : ''}"
 				onclick={() => {
