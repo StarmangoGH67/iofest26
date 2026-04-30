@@ -77,6 +77,7 @@
 				<p>{description}</p>
 			</div>
 			<div class="header-icon" aria-hidden="true">
+				<!-- svelte-ignore svelte_component_deprecated -->
 				<svelte:component this={PageIcon} size={42} color="white" strokeWidth={1.6} />
 			</div>
 		</div>

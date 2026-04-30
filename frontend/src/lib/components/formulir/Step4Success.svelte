@@ -18,7 +18,7 @@
 	<div class="flex flex-col items-center gap-5 px-8 py-14 text-center">
 		<!-- Check circle -->
 		<div
-			class="flex h-[72px] w-[72px] items-center justify-center rounded-full border-2"
+			class="flex h-18 w-18 items-center justify-center rounded-full border-2"
 			style="border-color:{TEAL};"
 		>
 			<Check size={34} color={TEAL} strokeWidth={2.5} />

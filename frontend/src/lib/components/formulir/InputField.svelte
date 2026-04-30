@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertCircle } from 'lucide-svelte';
+	import { CircleAlert } from 'lucide-svelte';
 
 	const BORDER_DEFAULT = '#E8EAED';
 	const BORDER_ERROR = '#FCA5A5';
@@ -43,7 +43,7 @@
 	/>
 	{#if error}
 		<p class="mt-1 flex items-center gap-1 text-xs" style="color:#EF4444;">
-			<AlertCircle size={11} />{error}
+			<CircleAlert size={11} />{error}
 		</p>
 	{/if}
 </div>

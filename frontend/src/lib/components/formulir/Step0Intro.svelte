@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NavButton from './form/NavButton.svelte';
+	import NavButton from '$lib/components/formulir/NavButton.svelte';
 
 	const TEAL = '#38BCDA';
 	const TEAL_LIGHT = '#E0F7F4';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Upload, FileText, ImageIcon, X, AlertCircle } from 'lucide-svelte';
+	import { Upload, FileText, ImageIcon, X, CircleAlert } from 'lucide-svelte';
 
 	const TEAL = '#38BCDA';
 	const TEAL_LIGHT = '#E0F7F4';
@@ -106,7 +106,7 @@
 	{/if}
 	{#if error}
 		<p class="mt-1.5 flex items-center gap-1 text-xs" style="color:#EF4444;">
-			<AlertCircle size={11} />{error}
+			<CircleAlert size={11} />{error}
 		</p>
 	{/if}
 </div>

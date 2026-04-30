@@ -301,10 +301,10 @@
 </script>
 
 <div class="min-h-screen" style="background:#F4F5F7; font-family:'Segoe UI',system-ui,sans-serif;">
-	<!-- ── Sticky Header / Stepper ───────────────────────────────────────────── -->
+	<!-- HEADER -->
 	<Stepper {currentStep} onBack={goBack} />
 
-	<!-- ── Page content ──────────────────────────────────────────────────── -->
+	<!-- MAIN CONTENT -->
 	<div class="mx-auto max-w-3xl px-4 py-5 pb-10">
 		{#if currentStep === 0}
 			<Step0Intro onNext={goNext} />

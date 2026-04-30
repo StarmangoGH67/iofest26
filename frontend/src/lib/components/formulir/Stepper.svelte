@@ -47,23 +47,20 @@
 		<!-- Stepper -->
 		<div class="relative flex items-start pb-4">
 			<!-- base track -->
-			<div
-				class="absolute top-[13px] right-[28px] left-[28px] h-[2px]"
-				style="background:{GRAY_300};"
-			></div>
+			<div class="absolute top-3.25 right-7 left-7 h-0.5" style="background:{GRAY_300};"></div>
 			<!-- filled track -->
 			<div
-				class="absolute top-[13px] left-[28px] h-[2px] transition-all duration-500"
+				class="absolute top-3.25 left-7 h-0.5 transition-all duration-500"
 				style="background:{TEAL}; width:calc({currentStep} / 4 * (100% - 56px));"
 			></div>
 
 			{#each STEPS as step, i}
 				{@const done = i < currentStep}
 				{@const active = i === currentStep}
-				<div class="relative z-10 flex flex-1 flex-col items-center gap-[5px]">
+				<div class="relative z-10 flex flex-1 flex-col items-center gap-1.25">
 					<!-- circle -->
 					<div
-						class="flex h-[26px] w-[26px] items-center justify-center rounded-full border-2 transition-all duration-300"
+						class="flex h-6.5 w-6.5 items-center justify-center rounded-full border-2 transition-all duration-300"
 						style="
               background:{done ? TEAL : '#fff'};
               border-color:{done || active ? TEAL : GRAY_300};

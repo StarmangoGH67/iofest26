@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AlertCircle } from 'lucide-svelte';
-	import InputField from './form/InputField.svelte';
-	import DateField from './form/DateField.svelte';
-	import SelectField from './form/SelectField.svelte';
-	import NavButton from './form/NavButton.svelte';
+	import InputField from '$lib/components/formulir/InputField.svelte';
+	import DateField from '$lib/components/formulir/DateField.svelte';
+	import SelectField from '$lib/components/formulir/SelectField.svelte';
+	import NavButton from '$lib/components/formulir/NavButton.svelte';
 
 	const TEAL = '#38BCDA';
 	const BORDER_DEFAULT = '#E8EAED';

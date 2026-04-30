@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AlertCircle } from 'lucide-svelte';
-	import NavButton from './form/NavButton.svelte';
+	import NavButton from '$lib/components/formulir/NavButton.svelte';
 
 	type OpsiPengurusan = 'milik_sendiri' | 'anak_kandung' | 'orang_lain' | '';
 

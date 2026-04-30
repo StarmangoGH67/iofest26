@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { AlertCircle } from 'lucide-svelte';
-	import UploadZone from './form/UploadZone.svelte';
-	import InputField from './form/InputField.svelte';
-	import DateField from './form/DateField.svelte';
-	import TextareaField from './form/TextareaField.svelte';
-	import NavButton from './form/NavButton.svelte';
+	import UploadZone from '$lib/components/formulir/UploadZone.svelte';
+	import InputField from '$lib/components/formulir/InputField.svelte';
+	import DateField from '$lib/components/formulir/DateField.svelte';
+	import TextareaField from '$lib/components/formulir/TextareaField.svelte';
+	import NavButton from '$lib/components/formulir/NavButton.svelte';
 
 	const TEAL = '#38BCDA';
 	const BORDER_DEFAULT = '#E8EAED';
