@@ -5,8 +5,9 @@
 	import Step2OrangTua from '$lib/components/formulir/Step2OrangTua.svelte';
 	import Step3Anak from '$lib/components/formulir/Step3Anak.svelte';
 	import Step4Success from '$lib/components/formulir/Step4Success.svelte';
+	import { MoveLeft } from 'lucide-svelte'; 
 
-	// ─── Types ───────────────────────────────────────────────────────────────
+	// ─── Types
 
 	type OpsiPengurusan = 'milik_sendiri' | 'anak_kandung' | 'orang_lain' | '';
 
@@ -46,7 +47,7 @@
 
 	type AnakField = keyof AnakData;
 
-	// ─── State ───────────────────────────────────────────────────────────────
+	// ─── State
 
 	let currentStep = $state(0);
 
@@ -128,7 +129,7 @@
 	let ayahDrag = $state(false);
 	let ibuDrag = $state(false);
 
-	// ─── Validation ──────────────────────────────────────────────────────────
+	// ─── Validation
 
 	function validateParent(d: ParentData): Record<ParentField, string> {
 		return {
@@ -182,7 +183,7 @@
 		return touched[field] || submitAttempted ? (errors[field] ?? '') : '';
 	}
 
-	// ─── File handling ────────────────────────────────────────────────────────
+	// ─── File handling
 
 	const ACCEPTED = ['image/jpeg', 'image/png', 'application/pdf'];
 	const MAX_BYTES = 2 * 1024 * 1024;

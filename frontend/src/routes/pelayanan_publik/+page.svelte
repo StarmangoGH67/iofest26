@@ -6,6 +6,15 @@
 	import { ChevronLeft } from 'lucide-svelte';
 	import './style.scss';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state'; 
+
+	const segments = page.url.pathname.split('/').filter(Boolean); 
+	const parentSegment = segments.slice(0, -1); 
+
+	const parentPath = 
+	parentSegment.length<=1 
+		? '/'
+		: '/' + parentSegment.join('/'); 
 
 	const PRIMARY = '#109458';
 
@@ -42,7 +51,9 @@
 	<button class="pp-nav__back" onclick={handleBack} aria-label="Kembali">
 		<ChevronLeft size={20} color="white" strokeWidth={2.5} />
 	</button>
-	<span class="pp-nav__title" class:pp-nav__title--visible={scrolled}>Pelayanan Publik</span>
+	<span class="pp-nav__title" class:pp-nav__title--visible={scrolled}>Pelayanan Publik
+		{parentPath}
+	</span>
 	<div class="pp-nav__avatar">K</div>
 </nav>
 
@@ -108,3 +119,85 @@
 		</div>
 	</main>
 </div>
+
+<style lang="scss">
+	.pp-nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 20px 10px;
+		background: transparent;
+		transition:
+			background 0.3s ease,
+			box-shadow 0.3s ease,
+			padding 0.3s ease;
+
+		&--scrolled {
+			background: linear-gradient(135deg, #0a4a2e 0%, #1a7a50 100%);
+			box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+			padding: 10px 20px;
+		}
+	}
+
+	.pp-nav__spacer {
+		width: 36px;
+		flex-shrink: 0;
+	}
+
+	.pp-nav__back {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.18);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		cursor: pointer;
+		flex-shrink: 0;
+		transition: background 0.2s;
+	}
+	.pp-nav__title {
+		font-size: 15px;
+		font-weight: 800;
+		color: white;
+		letter-spacing: -0.2px;
+		opacity: 0;
+		transform: translateY(6px);
+		transition:
+			opacity 0.25s ease,
+			transform 0.25s ease;
+		pointer-events: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 55%;
+		text-align: center;
+
+		&--visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.pp-nav__avatar {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.22);
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 14px;
+		font-weight: 700;
+		color: white;
+		flex-shrink: 0;
+	}
+
+</style>

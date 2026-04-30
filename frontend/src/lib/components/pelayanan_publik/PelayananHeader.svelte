@@ -39,6 +39,7 @@
 </script>
 
 <svelte:window onscroll={onScroll} />
+
 <nav
 	class="nav-row"
 	class:nav-scrolled={scrolled}
