@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { ChevronLeft } from 'lucide-svelte';
 	import type { Component } from 'svelte';
-	import { resolve } from '$app/paths';
 
 	interface Props {
 		title: string;
@@ -14,36 +13,55 @@
 		onBack?: () => void;
 	}
 
-	let { title, description, icon: PageIcon, breadcrumb = [], onBack }: Props = $props();
+	let {
+		title,
+		description,
+		icon: PageIcon,
+		breadcrumb = [],
+		gradientFrom,
+		gradientTo,
+		onBack
+	}: Props = $props();
 
 	function handleBack() {
 		if (onBack) {
 			onBack();
 		} else {
-			goto(resolve('/pelayanan_publik'));
+			goto('/pelayanan_publik');
 		}
+	}
+	let scrolled = $state(false);
+
+	function onScroll() {
+		scrolled = window.scrollY > 80;
 	}
 </script>
 
+<svelte:window onscroll={onScroll} />
+<nav
+	class="nav-row"
+	class:nav-scrolled={scrolled}
+	style="--grad-from: {gradientFrom}; --grad-to: {gradientTo};"
+>
+	<button class="back-btn" onclick={handleBack} aria-label="Kembali">
+		<ChevronLeft size={20} color="white" strokeWidth={2.5} />
+	</button>
+
+	<span class="nav-title" class:nav-title-visible={scrolled}>{title}</span>
+
+	<div class="avatar-chip">K</div>
+</nav>
+
 <header
-	class="pelayanan-header mx-auto max-w-4xl pb-7 md:px-12"
+	class="pelayanan-header"
 	style="background: linear-gradient(140deg, #0a4a2e 0%, #1a7a50 55%, #2bbf7a 100%);"
 >
 	<div class="circle-1"></div>
 	<div class="circle-2"></div>
 
-	<!-- Nav row -->
-	<div class="nav-row">
-		<button class="back-btn" onclick={handleBack} aria-label="Kembali">
-			<ChevronLeft size={20} color="white" strokeWidth={2.5} />
-		</button>
-		<div class="avatar-chip">K</div>
-	</div>
-
 	<div class="pt-14">
-		<!-- Breadcrumb -->
 		{#if breadcrumb.length > 0}
-			<nav class="breadcrumb" aria-label="Breadcrumb">
+			<nav class="breadcrumb max-w-4xl" aria-label="Breadcrumb">
 				{#each breadcrumb as crumb, i (crumb)}
 					<span>{crumb}</span>
 					{#if i < breadcrumb.length - 1}
@@ -53,14 +71,12 @@
 			</nav>
 		{/if}
 
-		<!-- Title + icon -->
 		<div class="header-body">
 			<div class="header-text">
 				<h1>{title}</h1>
 				<p>{description}</p>
 			</div>
 			<div class="header-icon" aria-hidden="true">
-				<!-- svelte-ignore svelte_component_deprecated -->
 				<svelte:component this={PageIcon} size={42} color="white" strokeWidth={1.6} />
 			</div>
 		</div>
@@ -68,10 +84,90 @@
 </header>
 
 <style lang="scss">
+	.nav-row {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 20px 10px;
+
+		background: transparent;
+		transition:
+			background 0.3s ease,
+			box-shadow 0.3s ease,
+			padding 0.3s ease;
+
+		&.nav-scrolled {
+			background: linear-gradient(135deg, var(--grad-from) 0%, var(--grad-to) 100%);
+			box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+			padding: 10px 20px;
+		}
+	}
+
+	.nav-title {
+		font-size: 15px;
+		font-weight: 800;
+		color: white;
+		letter-spacing: -0.2px;
+		opacity: 0;
+		transform: translateY(6px);
+		transition:
+			opacity 0.25s ease,
+			transform 0.25s ease;
+		pointer-events: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 55%;
+
+		&.nav-title-visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.back-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.18);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		cursor: pointer;
+		flex-shrink: 0;
+		transition: background 0.2s;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.3);
+		}
+	}
+
+	.avatar-chip {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.22);
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 14px;
+		font-weight: 700;
+		color: white;
+		flex-shrink: 0;
+	}
+
 	.pelayanan-header {
 		position: relative;
 		overflow: hidden;
 		border-radius: 0 0 36px 36px;
+		padding: 0 0 28px;
 		color: white;
 
 		.circle-1 {
@@ -95,47 +191,6 @@
 			left: -28%;
 			z-index: 0;
 		}
-	}
-
-	.nav-row {
-		position: fixed;
-		width: 100%;
-		z-index: 10;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 14px 20px 6px;
-	}
-
-	.back-btn {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 36px;
-		height: 36px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.18);
-		border: 1px solid rgba(255, 255, 255, 0.25);
-		// backdrop-filter: blur(8px);
-		cursor: pointer;
-		transition: background 0.2s;
-
-		&:hover {
-			background: rgba(255, 255, 255, 0.28);
-		}
-	}
-
-	.avatar-chip {
-		width: 36px;
-		height: 36px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.22);
-		border: 2px solid rgba(255, 255, 255, 0.3);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 14px;
-		font-weight: 700;
 	}
 
 	.breadcrumb {

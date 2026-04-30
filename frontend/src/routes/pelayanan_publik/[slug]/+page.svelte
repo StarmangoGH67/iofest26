@@ -32,7 +32,7 @@
 	<title>{page.title} — Pelayanan Publik</title>
 </svelte:head>
 
-<div class="page-wrap mx-auto max-w-6xl">
+<div class="page-wrap mx-auto">
 	<PelayananHeader
 		title={page.title}
 		description={page.description}

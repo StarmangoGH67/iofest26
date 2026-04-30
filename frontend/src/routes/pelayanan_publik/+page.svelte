@@ -2,11 +2,22 @@
 	import PelayananSearch from '$lib/components/pelayanan_publik/PelayananSearch.svelte';
 	import CategoryCard from '$lib/components/pelayanan_publik/CategoryCard.svelte';
 	import { pelayananCategories } from '$lib/data/pelayanan_publik_data';
+	import { goto } from '$app/navigation';
+	import { ChevronLeft } from 'lucide-svelte';
 	import './style.scss';
 
 	const PRIMARY = '#109458';
 
 	let searchQuery = $state('');
+	let scrolled = $state(false);
+
+	function handleBack() {
+		goto('/');
+	}
+
+	function onScroll() {
+		scrolled = window.scrollY > 80;
+	}
 
 	const filtered = $derived(
 		searchQuery.trim()
@@ -23,11 +34,21 @@
 	<title>Pelayanan Publik</title>
 </svelte:head>
 
-<div class="page-wrap mx-auto max-w-5xl">
+<svelte:window onscroll={onScroll} />
+
+<!-- Fixed navbar -->
+<nav class="pp-nav" class:pp-nav--scrolled={scrolled}>
+	<button class="pp-nav__back" onclick={handleBack} aria-label="Kembali">
+		<ChevronLeft size={20} color="white" strokeWidth={2.5} />
+	</button>
+	<span class="pp-nav__title" class:pp-nav__title--visible={scrolled}>Pelayanan Publik</span>
+	<div class="pp-nav__avatar">K</div>
+</nav>
+
+<div class="page-wrap mx-auto">
 	<header class="main-header px-5 pt-14 pb-7 md:px-12 md:pb-12">
 		<div class="circle-1"></div>
 		<div class="circle-2"></div>
-
 		<div class="header-top">
 			<div>
 				<p class="breadcrumb-text">Beranda / Pelayanan publik</p>
@@ -57,15 +78,12 @@
 			secara mudah, cepat, dan transparan.
 		</p>
 	</header>
-
 	<main class="main-content mx-auto max-w-4xl">
 		<!-- Searchbar -->
 		<PelayananSearch placeholder="Cari Layanan" bind:value={searchQuery} primaryColor={PRIMARY} />
-
 		<!-- List Section -->
 		<div class="list-section">
 			<h2 class="section-title">Daftar Layanan yang Tersedia</h2>
-
 			{#if filtered.length === 0}
 				<div class="empty-state">
 					<p>Tidak ada layanan untuk "<strong>{searchQuery}</strong>"</p>
