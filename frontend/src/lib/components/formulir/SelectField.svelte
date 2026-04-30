@@ -50,7 +50,7 @@
 		aria-invalid={error ? 'true' : 'false'}
 	>
 		<option value="" disabled selected hidden>{placeholder}</option>
-		{#each options as opt}
+		{#each options as opt (opt)}
 			<option value={opt}>{opt}</option>
 		{/each}
 	</select>

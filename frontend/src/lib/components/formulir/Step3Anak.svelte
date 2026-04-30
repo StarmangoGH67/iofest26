@@ -48,7 +48,6 @@
 		anakTouched,
 		anakErrors,
 		anakValid,
-		submitAttempted,
 		onAnakField,
 		onJenisKelamin,
 		onNext,
@@ -87,7 +86,7 @@
 				Jenis Kelamin <span style="color:#EF4444;">*</span>
 			</p>
 			<div class="flex gap-6">
-				{#each [{ v: 'pria' as const, l: 'Pria' }, { v: 'wanita' as const, l: 'Wanita' }] as jk}
+				{#each [{ v: 'pria' as const, l: 'Pria' }, { v: 'wanita' as const, l: 'Wanita' }] as jk (jk)}
 					<label class="flex cursor-pointer items-center gap-2">
 						<input
 							type="radio"
@@ -104,7 +103,7 @@
 							style="border-color:{anak.jenisKelamin === jk.v ? TEAL : GRAY_300};"
 						>
 							{#if anak.jenisKelamin === jk.v}
-								<div class="h-[10px] w-[10px] rounded-full" style="background:{TEAL};"></div>
+								<div class="h-2.5 w-2.5 rounded-full" style="background:{TEAL};"></div>
 							{/if}
 						</div>
 						<span class="text-sm" style="color:{TEXT_LABEL};">{jk.l}</span>
@@ -125,7 +124,7 @@
 			value={anak.tempatKelahiran}
 			onchange={(v) => onAnakField('tempatKelahiran', v)}
 			placeholder="Pilih Tempat Kelahiran"
-			options={['Rumah Sakit', 'Klinik', 'Puskesmas', 'Rumah', 'Lainnya']}
+			options={['Rumah Sakit', 'Klinik', 'Puskesmas', 'Rumah', 'Bidan', 'Lainnya']}
 			error={errMsg(anakErrors, anakTouched, 'tempatKelahiran')}
 		/>
 
@@ -153,7 +152,7 @@
 			value={anak.jenisKelahiran}
 			onchange={(v) => onAnakField('jenisKelahiran', v)}
 			placeholder="Pilih Jenis Kelahiran"
-			options={['Tunggal', 'Kembar 2', 'Kembar 3', 'Lainnya']}
+			options={['Kelahiran Tunggal', 'Kelahiran Kembar', 'Kelahiran Khusus']}
 			error={errMsg(anakErrors, anakTouched, 'jenisKelahiran')}
 		/>
 
@@ -173,7 +172,7 @@
 			value={anak.penolongKelahiran}
 			onchange={(v) => onAnakField('penolongKelahiran', v)}
 			placeholder="Pilih Penolong Kelahiran"
-			options={['Dokter', 'Bidan', 'Dukun Beranak', 'Sendiri', 'Lainnya']}
+			options={['Dokter', 'Bidan', 'Dukun Beranak/Paraji', 'Lainnya']}
 			error={errMsg(anakErrors, anakTouched, 'penolongKelahiran')}
 		/>
 

@@ -236,7 +236,7 @@
 		}
 	}
 
-	// ─── Parent field setters ─────────────────────────────────────────────────
+	// ─── Parent field setters
 
 	function setAyahField(field: ParentField, value: string): void {
 		if (field === 'file') return;
@@ -250,7 +250,7 @@
 		(ibuTouched as Record<string, boolean>)[field] = true;
 	}
 
-	// ─── Anak field setter ────────────────────────────────────────────────────
+	// ─── Anak field setter
 
 	function setAnakField(field: AnakField, value: string): void {
 		(anak as unknown as Record<string, string>)[field] = value;
@@ -262,7 +262,7 @@
 		anakTouched.jenisKelamin = true;
 	}
 
-	// ─── Navigation ───────────────────────────────────────────────────────────
+	// ─── Navigation
 
 	function goBack(): void {
 		if (currentStep > 0) {

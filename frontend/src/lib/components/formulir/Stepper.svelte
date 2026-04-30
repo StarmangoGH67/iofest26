@@ -54,7 +54,7 @@
 				style="background:{TEAL}; width:calc({currentStep} / 4 * (100% - 56px));"
 			></div>
 
-			{#each STEPS as step, i}
+			{#each STEPS as step, i (i)}
 				{@const done = i < currentStep}
 				{@const active = i === currentStep}
 				<div class="relative z-10 flex flex-1 flex-col items-center gap-1.25">
@@ -69,9 +69,9 @@
 						{#if done}
 							<Check size={12} color="#fff" strokeWidth={3} />
 						{:else if active}
-							<div class="h-[10px] w-[10px] rounded-full" style="background:{TEAL};"></div>
+							<div class="h-2.5 w-2.5 rounded-full" style="background:{TEAL};"></div>
 						{:else}
-							<div class="h-[8px] w-[8px] rounded-full" style="background:{GRAY_300};"></div>
+							<div class="h-2 w-2 rounded-full" style="background:{GRAY_300};"></div>
 						{/if}
 					</div>
 					<!-- label -->

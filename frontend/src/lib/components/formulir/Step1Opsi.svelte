@@ -30,7 +30,7 @@
 		</p>
 
 		<div class="space-y-3">
-			{#each [{ value: 'milik_sendiri' as OpsiPengurusan, label: 'Milik Sendiri' }, { value: 'anak_kandung' as OpsiPengurusan, label: 'Anak Kandung' }, { value: 'orang_lain' as OpsiPengurusan, label: 'Orang Lain Beda Kartu Keluarga' }] as opt}
+			{#each [{ value: 'milik_sendiri' as OpsiPengurusan, label: 'Milik Sendiri' }, { value: 'anak_kandung' as OpsiPengurusan, label: 'Anak Kandung' }, { value: 'orang_lain' as OpsiPengurusan, label: 'Orang Lain Beda Kartu Keluarga' }] as opt (opt)}
 				<label
 					class="flex cursor-pointer items-center gap-3 rounded-xl p-3 transition-all"
 					style="
@@ -53,7 +53,7 @@
 						style="border-color:{opsi === opt.value ? TEAL : GRAY_300};"
 					>
 						{#if opsi === opt.value}
-							<div class="h-[10px] w-[10px] rounded-full" style="background:{TEAL};"></div>
+							<div class="h-2.5 w-2.5 rounded-full" style="background:{TEAL};"></div>
 						{/if}
 					</div>
 					<span class="text-sm font-medium" style="color:{TEXT_MAIN};">

@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { ChevronLeft } from 'lucide-svelte';
 	import './style.scss';
+	import { resolve } from '$app/paths';
 
 	const PRIMARY = '#109458';
 
@@ -12,7 +13,7 @@
 	let scrolled = $state(false);
 
 	function handleBack() {
-		goto('/');
+		goto(resolve('/'));
 	}
 
 	function onScroll() {

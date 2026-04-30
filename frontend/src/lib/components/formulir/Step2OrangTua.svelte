@@ -115,6 +115,7 @@
 				onFileChange={onAyahFileChange}
 				onRemove={onAyahRemove}
 			/>
+			<img src="/Images/KTP.png" alt="KTP.png" />
 			<InputField
 				label="Nama Ayah Kandung"
 				id="ayah-nama"
@@ -189,6 +190,7 @@
 				onFileChange={onIbuFileChange}
 				onRemove={onIbuRemove}
 			/>
+			<img src="/Images/KTP.png" alt="KTP.png" />
 			<InputField
 				label="Nama Ibu Kandung"
 				id="ibu-nama"
