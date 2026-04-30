@@ -4,6 +4,7 @@
 	import { pelayananCategories } from '$lib/data/pelayanan_publik_data';
 	import { goto } from '$app/navigation';
 	import { ChevronLeft } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
 	import './style.scss';
 
 	const PRIMARY = '#109458';
@@ -12,7 +13,7 @@
 	let scrolled = $state(false);
 
 	function handleBack() {
-		goto('/');
+		goto(resolve('/'));
 	}
 
 	function onScroll() {

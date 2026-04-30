@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { ChevronLeft } from 'lucide-svelte';
 	import type { Component } from 'svelte';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		title: string;
@@ -27,7 +28,7 @@
 		if (onBack) {
 			onBack();
 		} else {
-			goto('/pelayanan_publik');
+			goto(resolve('/pelayanan_publik'));
 		}
 	}
 	let scrolled = $state(false);
