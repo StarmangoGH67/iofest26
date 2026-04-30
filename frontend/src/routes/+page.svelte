@@ -8,7 +8,6 @@
 		House,
 		BookText,
 		Globe,
-		Camera,
 		Truck,
 		Sun,
 		Waves,
@@ -16,7 +15,8 @@
 		LayoutGrid,
 		Trash2,
 		Zap,
-		Search
+		Search,
+		CirclePlus
 	} from 'lucide-svelte';
 	import Header from '$lib/components/Landing/Header.svelte';
 	import ReportSection from '$lib/components/Landing/LayananPelaporan.svelte';
@@ -129,13 +129,13 @@
 
 <div class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center pb-24">
 	<Header name={user.name} imageUrl={user.imageUrl} {services} {cardItems} />
-	<div class="z-40 -mt-12 flex w-full items-center justify-center">
+	<div class="fixed right-4 bottom-4 z-50 flex w-full items-center justify-end">
 		<a
 			href={resolve('/pelayanan_publik')}
-			class="rounded-full border-6 border-white bg-emerald-500 p-3"
+			class="rounded-full border-4 border-white bg-emerald-500 p-2 opacity-90 shadow-sm"
 			aria-label="Report Facility Button"
 		>
-			<Camera class="h-12 w-12 text-white" />
+			<CirclePlus class="h-10 w-10 text-white" />
 		</a>
 	</div>
 	<main class="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8">
