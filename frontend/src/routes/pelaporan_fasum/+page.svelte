@@ -23,7 +23,7 @@
         gradientTo={header.gradientTo}
     />
 
-    <main class="relative z-10 mx-auto max-w-md px-5 -mt-8 space-y-8">
+    <main class="relative z-10 mx-auto max-w-md px-5 pt-8 space-y-8">
         <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col items-center">
             <h2 class="text-center text-[15px] font-extrabold text-[#1a1a1a] mb-2">
                 Statistik Pelaporan Publik
