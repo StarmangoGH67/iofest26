@@ -1,4 +1,5 @@
 import { 
+    Megaphone,
     Truck, 
     TreePine, 
     Sun, 
@@ -93,6 +94,7 @@ export const FasumHeaderData = {
     title: "Pelaporan Fasilitas Umum",
     description: "Selamat datang di Portal Pelaporan Fasilitas Umum Online. Tempat dimana Anda bisa membuat laporan terkait kerusakan fasilitas umum di lingkungan sekitar Anda.",
     breadcrumb: ['Beranda', 'Pelaporan Fasilitas Umum'],
+    icon: Megaphone as unknown as Component,
     gradientFrom: "#0a4a2e",
     gradientTo: "#1a7a50"
 };
