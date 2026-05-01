@@ -83,13 +83,13 @@ export const FasumCategories: FasumCategory[] = [
     }
 ]
 
-export const fasumStats: StatItem[] = [
+export const FasumStats: StatItem[] = [
     { value: '1.2', suffix: 'K', label: 'Laporan masuk' },
     { value: '999', label: 'Laporan selesai' },
     { value: '99', suffix: '%', label: 'Tingkat respons'}
 ];
 
-export const fasumHeaderData = {
+export const FasumHeaderData = {
     title: "Pelaporan Fasilitas Umum",
     description: "Selamat datang di Portal Pelaporan Fasilitas Umum Online. Tempat dimana Anda bisa membuat laporan terkait kerusakan fasilitas umum di lingkungan sekitar Anda.",
     breadcrumb: ['Beranda', 'Pelaporan Fasilitas Umum'],
