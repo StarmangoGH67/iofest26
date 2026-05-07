@@ -2,6 +2,7 @@
 	import PelayananHeader from '$lib/components/pelayanan_publik/PelayananHeader.svelte';
 	import FasumStatCard from '$lib/components/pelaporan_fasum/FasumStatCard.svelte';
 	import ServiceButton from '$lib/components/ServiceButton.svelte';
+	import { resolve } from '$app/paths';
 
 	let { data } = $props();
 
@@ -55,7 +56,7 @@
 			<div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-10">
 				{#each categories as item (item.id)}
 					<a
-						href="/pelaporan_fasum/{item.id}"
+						href={resolve(`/pelaporan_fasum/${item.id}`)}
 						style="--hover-bg: {item.bg};"
 						class="flex cursor-pointer items-center justify-center rounded-2xl border border-transparent bg-[#F4F5F7] p-4 transition-all duration-300 hover:border-gray-100 hover:bg-(--hover-bg) hover:shadow-md"
 					>
